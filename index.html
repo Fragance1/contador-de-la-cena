@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+
+<!-- Tipografía Ubuntu -->
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        background: transparent;
+        font-family: 'Ubuntu', sans-serif;
+        text-align: center;
+    }
+
+    #contenedor {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        margin-top: 40px;
+    }
+
+    .bloque {
+        text-align: center;
+    }
+
+    .numero {
+        font-size: 120px;
+        font-weight: 700;
+        color: #572235;
+    }
+
+    #segundos {
+        color: #312c4b;
+    }
+
+    .label {
+        margin-top: 10px;
+        font-size: 24px;
+        color: #572235;
+        letter-spacing: 2px;
+    }
+
+    .separador {
+        font-size: 120px;
+        font-weight: 700;
+        color: #572235;
+        margin: 0 10px;
+        position: relative;
+        top: -10px;
+    }
+</style>
+</head>
+<body>
+
+<div id="contenedor">
+
+    <div class="bloque">
+        <div id="dias" class="numero">00</div>
+        <div class="label">DÍAS</div>
+    </div>
+
+    <div class="separador">:</div>
+
+    <div class="bloque">
+        <div id="horas" class="numero">00</div>
+        <div class="label">HORAS</div>
+    </div>
+
+    <div class="separador">:</div>
+
+    <div class="bloque">
+        <div id="minutos" class="numero">00</div>
+        <div class="label">MINUTOS</div>
+    </div>
+
+    <div class="separador">:</div>
+
+    <div class="bloque">
+        <div id="segundos" class="numero">00</div>
+        <div class="label">SEGUNDOS</div>
+    </div>
+
+</div>
+
+<script>
+// Fecha objetivo: 13 diciembre 2025 - 22:00
+const fechaObjetivo = new Date("2025-12-13T22:00:00").getTime();
+
+setInterval(() => {
+    const ahora = new Date().getTime();
+    const diferencia = fechaObjetivo - ahora;
+
+    const d = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+    document.getElementById("dias").textContent = d.toString().padStart(2, "0");
+    document.getElementById("horas").textContent = h.toString().padStart(2, "0");
+    document.getElementById("minutos").textContent = m.toString().padStart(2, "0");
+    document.getElementById("segundos").textContent = s.toString().padStart(2, "0");
+
+}, 1000);
+</script>
+
+</body>
+</html>
